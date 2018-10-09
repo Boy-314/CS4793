@@ -16,8 +16,12 @@ if(len(splitBits[lengthOutput-1]) <= 6):
 output = "";
 for i in range(lengthOutput):
     output += base64[int(splitBits[i],2)];
-addEquals = 0;
-
+if(len(output) % 4 == 0):
+    addEquals = 0;
+else:
+    addEquals = 4 - (len(output) % 4);
+for i in range(addEquals):
+    output += "=";
 outputFileName = fileName + ".BASE64";
 fileOutput = open(outputFileName,"w+");
 fileOutput.write(output);
